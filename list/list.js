@@ -22,10 +22,40 @@ class List {
    * @returns {*}
    */
   pop() {
-    let returnValue = this.data[this.length];
-    delete this.data[this.length];
+    let returnValue = this.data[this.length - 1];
+    delete this.data[this.length - 1];
     this.length--;
     return returnValue;
+  }
+
+  shift() {
+    let returnValue = this.data[1];
+    delete this.data[0];
+    let newData = {};
+    for (let entry of Object.entries(this.data)) {
+      Object.assign(newData, entry);
+    }
+    this.data = newData;
+    this.length--;
+    return returnValue;
+  }
+  
+  unshift() {
+    let args = arguments;
+    for (let arg of args) {
+      for (let i = this.length - 1; i >= 0; i--) {
+        this.data[i + 1] = this.data[i.toString()];
+      }
+      this.data[0] = arg;
+      this.length++;
+    }
+    return this.length;
+  }
+  
+  forEach(items, callback) {
+    for (let item of items) {
+      callback(item);
+    }
   }
 
 }
