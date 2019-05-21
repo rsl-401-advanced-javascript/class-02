@@ -24,4 +24,18 @@ List.prototype.pop = function() {
   return returnValue;
 };
 
+List.prototype.shift = function() {
+  let returnValue = this.data[1];
+  delete this.data[0];
+  let newData = {};
+  for (let entry of Object.entries(this.data)) {
+    if (typeof entry !== 'undefined') {
+      Object.assign(newData, entry);
+    }
+  }
+  this.data = newData;
+  this.length--;
+  return returnValue;
+};
+
 module.exports = List;
