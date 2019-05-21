@@ -18,8 +18,8 @@ List.prototype.push = function(item) {
  * @returns {*}
  */
 List.prototype.pop = function() {
-  let returnValue = this.data[this.length];
-  delete this.data[this.length];
+  let returnValue = this.data[this.length - 1];
+  delete this.data[this.length - 1];
   this.length--;
   return returnValue;
 };
@@ -46,6 +46,12 @@ List.prototype.unshift = function() {
     this.length++;
   }
   return this.length;
+};
+
+List.prototype.forEach = function(items, callback) {
+  for (let item of items) {
+    callback(item);
+  }
 };
 
 module.exports = List;
