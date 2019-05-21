@@ -52,5 +52,6 @@ describe('List Data Structure', () => {
     stuff.unshift('b');
     stuff.forEach(Object.values(stuff.data), () => count++);
     expect(count).toBe(2);
+    expect(stuff.forEach(Object.values(stuff.data), 'not a function')).toBe(null);
   });
 });

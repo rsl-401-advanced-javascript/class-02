@@ -49,6 +49,8 @@ List.prototype.unshift = function() {
 };
 
 List.prototype.forEach = function(items, callback) {
+  if (typeof callback !== 'function')
+    return null;
   for (let item of items) {
     callback(item);
   }

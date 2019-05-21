@@ -53,6 +53,8 @@ class List {
   }
   
   forEach(items, callback) {
+    if (typeof callback !== 'function')
+      return null;
     for (let item of items) {
       callback(item);
     }
