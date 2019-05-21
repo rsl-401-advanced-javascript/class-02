@@ -29,4 +29,13 @@ describe('List Data Structure', () => {
     expect(stuff.shift()).toEqual('b');
   });
 
+  it('unshifts items to the beginning of the data set', () => {
+    let stuff = new List();
+    stuff.unshift('a');
+    stuff.unshift('b');
+    stuff.unshift('d', 'f', 'g');
+    expect(stuff.length).toEqual(5);
+    expect(stuff.data[0]).toEqual('g');
+    expect(stuff.unshift('c')).toEqual(6);
+  });
 });
