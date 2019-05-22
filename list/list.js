@@ -81,6 +81,24 @@ class List {
     return result.data;
   }
 
+  reduce(items, callback, init) {
+    if (typeof callback !== 'function')
+      return null;
+    let result;
+    if (Array.isArray(init)) {
+      result = init;
+      for (let item of items)
+        callback(result, item);
+    } else {
+      init ? result = init : result = items[0];
+      for (let i = init ? 0 : 1; i < items.length; i++) {
+        result = callback(result, items[i]);
+      }
+      typeof result === 'string' ? result = result.trim() : '';
+    }
+    return result;
+  }
+
 }
 
 module.exports = List;

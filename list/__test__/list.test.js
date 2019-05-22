@@ -57,16 +57,32 @@ describe('List Data Structure', () => {
 
   it('map should return a new list with updated values', () => {
     let stuff = new List();
-    stuff.unshift('a','b','c','d');
-    expect(stuff.map(Object.values(stuff.data), (item) => 'z')).toEqual({ '0': 'z', '1': 'z', '2': 'z', '3': 'z' });
+    stuff.unshift('a', 'b', 'c', 'd');
+    expect(stuff.map(Object.values(stuff.data), () => 'z')).toEqual({
+      '0': 'z',
+      '1': 'z',
+      '2': 'z',
+      '3': 'z',
+    });
     expect(stuff.map(Object.values(stuff.data), 'z')).toEqual(null);
   });
 
   it('filter should return a new list with values matching the passed condition', () => {
     let stuff = new List();
-    stuff.push(1,2,3,4,5,6);
-    expect(stuff.filter(Object.values(stuff.data), (item) => item > 3)).toEqual({ '0': 4, '1': 5, '2': 6 });
-    expect(stuff.filter(Object.values(stuff.data), 3)).toEqual(null);    
+    stuff.push(1, 2, 3, 4, 5, 6);
+    expect(stuff.filter(Object.values(stuff.data), (item) => item > 3)).toEqual({
+      '0': 4,
+      '1': 5,
+      '2': 6,
+    });
+    expect(stuff.filter(Object.values(stuff.data), 3)).toEqual(null);
   });
 
+  it('reduce should return a value', () => {
+    let stuff = new List();
+    stuff.push(1, 2, 3, 4, 5);
+    expect(stuff.reduce(Object.values(stuff.data), (acc, curr) => acc.push(curr), [])).toEqual([1, 2, 3, 4, 5]);
+    expect(stuff.reduce(Object.values(stuff.data), (acc, curr) => acc += curr, 0)).toEqual(15);
+    expect(stuff.reduce(Object.values(stuff.data), (acc, curr) => acc += curr, ' ')).toEqual('12345');
+  });
 });
