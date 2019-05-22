@@ -113,7 +113,7 @@ class List {
       }
     }
     return Object.values(result.data);
-  };
+  }
 
 }
 
