@@ -56,4 +56,14 @@ List.prototype.forEach = function(items, callback) {
   }
 };
 
+List.prototype.map = function(items, callback) {
+  if (typeof callback !== 'function')
+    return null;
+  let result = new List();
+  for (let item of items) {
+    result.push(callback(item));
+  }
+  return result.data;
+};
+
 module.exports = List;

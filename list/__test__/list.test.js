@@ -1,8 +1,8 @@
 'use strict';
 
 // These 2 should be interchangeable!
-const List = require('../list.js');
-// const List = require('../list-constructor.js');
+// const List = require('../list.js');
+const List = require('../list-constructor.js');
 
 describe('List Data Structure', () => {
 
@@ -54,4 +54,12 @@ describe('List Data Structure', () => {
     expect(count).toBe(2);
     expect(stuff.forEach(Object.values(stuff.data), 'not a function')).toBe(null);
   });
+
+  it('map should return a new list with updated values', () => {
+    let stuff = new List();
+    stuff.unshift('a','b','c','d');
+    expect(stuff.map(Object.values(stuff.data), (item) => 'z')).toEqual({ '0': 'z', '1': 'z', '2': 'z', '3': 'z' });
+    expect(stuff.map(Object.values(stuff.data), 'z')).toEqual(null);
+  });
+
 });

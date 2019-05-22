@@ -18,8 +18,6 @@ describe('Vehicles', () => {
         return new VehicleClass.Car('foo');
       case 'Factory':
         return VehicleFactory.carFactory('foo');
-      // case 'Factory':
-      //   return VehicleFactory.car('foo');
       default:
         return {};
       }
