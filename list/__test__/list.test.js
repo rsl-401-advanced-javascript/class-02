@@ -85,4 +85,12 @@ describe('List Data Structure', () => {
     expect(stuff.reduce(Object.values(stuff.data), (acc, curr) => acc += curr, 0)).toEqual(15);
     expect(stuff.reduce(Object.values(stuff.data), (acc, curr) => acc += curr, ' ')).toEqual('12345');
   });
+
+  it('slice should return a list of specified values', () => {
+    let stuff = new List();
+    stuff.push(1, 2, 3, 4, 5);
+    expect(stuff.slice(2,4)).toEqual([3, 4]);
+    expect(stuff.slice(2,-1)).toEqual([3]);
+    expect(stuff.slice(-2,4)).toEqual(null);
+  });
 });

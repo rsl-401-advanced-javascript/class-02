@@ -99,6 +99,22 @@ class List {
     return result;
   }
 
+  slice(start, end) {
+    if (isNaN(start) || isNaN(end) || start < 0)
+      return null;
+    let result = new List();
+    if (end > 0) {
+      for (let i = start; i < end; i++) {
+        result.push(this.data[i.toString()]);
+      }
+    } else {
+      for (let i = start; i < this.length - 1 + end; i++) {
+        result.push(this.data[i.toString()]);
+      }
+    }
+    return Object.values(result.data);
+  };
+
 }
 
 module.exports = List;
