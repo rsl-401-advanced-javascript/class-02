@@ -8,9 +8,11 @@ function List() {
  * Add item to the end of the list
  * @param item
  */
-List.prototype.push = function(item) {
-  this.data[this.length] = item;
-  this.length++;
+List.prototype.push = function() {
+  for (let arg of arguments) {
+    this.data[this.length] = arg;
+    this.length++;
+  }
 };
 
 /**
@@ -62,6 +64,17 @@ List.prototype.map = function(items, callback) {
   let result = new List();
   for (let item of items) {
     result.push(callback(item));
+  }
+  return result.data;
+};
+
+List.prototype.filter = function(items, callback) {
+  if (typeof callback !== 'function')
+    return null;
+  let result = new List();
+  for (let item of items) {
+    if (callback(item))
+      result.push(item);
   }
   return result.data;
 };

@@ -70,6 +70,17 @@ class List {
     return result.data;
   }
 
+  filter(items, callback) {
+    if (typeof callback !== 'function')
+      return null;
+    let result = new List();
+    for (let item of items) {
+      if (callback(item))
+        result.push(item);
+    }
+    return result.data;
+  }
+
 }
 
 module.exports = List;

@@ -62,4 +62,11 @@ describe('List Data Structure', () => {
     expect(stuff.map(Object.values(stuff.data), 'z')).toEqual(null);
   });
 
+  it('filter should return a new list with values matching the passed condition', () => {
+    let stuff = new List();
+    stuff.push(1,2,3,4,5,6);
+    expect(stuff.filter(Object.values(stuff.data), (item) => item > 3)).toEqual({ '0': 4, '1': 5, '2': 6 });
+    expect(stuff.filter(Object.values(stuff.data), 3)).toEqual(null);    
+  });
+
 });
