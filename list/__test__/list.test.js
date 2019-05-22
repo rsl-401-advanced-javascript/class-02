@@ -89,8 +89,29 @@ describe('List Data Structure', () => {
   it('slice should return a list of specified values', () => {
     let stuff = new List();
     stuff.push(1, 2, 3, 4, 5);
-    expect(stuff.slice(2,4)).toEqual([3, 4]);
-    expect(stuff.slice(2,-1)).toEqual([3]);
-    expect(stuff.slice(-2,4)).toEqual(null);
+    expect(stuff.slice(2, 4)).toEqual([3, 4]);
+    expect(stuff.slice(2, -1)).toEqual([3]);
+    expect(stuff.slice(-2, 4)).toEqual(null);
+  });
+
+  it('reverse should reverse the values', () => {
+    let stuff = new List();
+    stuff.push(1, 2, 3, 4, 5);
+    stuff.reverse();
+    expect(stuff.data).toEqual({
+      '0': 5,
+      '1': 4,
+      '2': 3,
+      '3': 2,
+      '4': 1,
+    });
+    stuff.reverse();
+    expect(stuff.data).toEqual({
+      '0': 1,
+      '1': 2,
+      '2': 3,
+      '3': 4,
+      '4': 5,
+    });
   });
 });

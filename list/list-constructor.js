@@ -8,7 +8,7 @@ function List() {
  * Add item to the end of the list
  * @param item
  */
-List.prototype.push = function() {
+List.prototype.push = function () {
   for (let arg of arguments) {
     this.data[this.length] = arg;
     this.length++;
@@ -19,14 +19,14 @@ List.prototype.push = function() {
  * // Remove an item from the end of the list and return it's value
  * @returns {*}
  */
-List.prototype.pop = function() {
+List.prototype.pop = function () {
   let returnValue = this.data[this.length - 1];
   delete this.data[this.length - 1];
   this.length--;
   return returnValue;
 };
 
-List.prototype.shift = function() {
+List.prototype.shift = function () {
   let returnValue = this.data[1];
   delete this.data[0];
   let newData = {};
@@ -38,7 +38,7 @@ List.prototype.shift = function() {
   return returnValue;
 };
 
-List.prototype.unshift = function() {
+List.prototype.unshift = function () {
   let args = arguments;
   for (let arg of args) {
     for (let i = this.length - 1; i >= 0; i--) {
@@ -50,7 +50,7 @@ List.prototype.unshift = function() {
   return this.length;
 };
 
-List.prototype.forEach = function(items, callback) {
+List.prototype.forEach = function (items, callback) {
   if (typeof callback !== 'function')
     return null;
   for (let item of items) {
@@ -58,7 +58,7 @@ List.prototype.forEach = function(items, callback) {
   }
 };
 
-List.prototype.map = function(items, callback) {
+List.prototype.map = function (items, callback) {
   if (typeof callback !== 'function')
     return null;
   let result = new List();
@@ -68,7 +68,7 @@ List.prototype.map = function(items, callback) {
   return result.data;
 };
 
-List.prototype.filter = function(items, callback) {
+List.prototype.filter = function (items, callback) {
   if (typeof callback !== 'function')
     return null;
   let result = new List();
@@ -79,7 +79,7 @@ List.prototype.filter = function(items, callback) {
   return result.data;
 };
 
-List.prototype.reduce = function(items, callback, init) {
+List.prototype.reduce = function (items, callback, init) {
   if (typeof callback !== 'function')
     return null;
   let result;
@@ -97,7 +97,7 @@ List.prototype.reduce = function(items, callback, init) {
   return result;
 };
 
-List.prototype.slice = function(start, end) {
+List.prototype.slice = function (start, end) {
   if (isNaN(start) || isNaN(end) || start < 0)
     return null;
   let result = new List();
@@ -111,6 +111,25 @@ List.prototype.slice = function(start, end) {
     }
   }
   return Object.values(result.data);
+};
+
+List.prototype.reverse = function () {
+  let result = new List();
+  let arr = Object.values(this.data);
+  for (let i = 0; i < arr.length; i++) {
+    if (i >= arr.length / 2) {
+      break;
+    } else {
+      let front = arr[i];
+      let back = arr[arr.length - i - 1];
+      arr[i] = back;
+      arr[arr.length - i - 1] = front;
+    }
+  }
+  for (let item of arr) {
+    result.push(item);
+  }
+  this.data = result.data;
 };
 
 module.exports = List;

@@ -115,6 +115,25 @@ class List {
     return Object.values(result.data);
   }
 
+  reverse() {
+    let result = new List();
+    let arr = Object.values(this.data);
+    for (let i = 0; i < arr.length; i++) {
+      if (i >= arr.length / 2) {
+        break;
+      } else {
+        let front = arr[i];
+        let back = arr[arr.length - i - 1];
+        arr[i] = back;
+        arr[arr.length - i - 1] = front;
+      }
+    }
+    for (let item of arr) {
+      result.push(item);
+    }
+    this.data = result.data;
+  }
+
 }
 
 module.exports = List;
